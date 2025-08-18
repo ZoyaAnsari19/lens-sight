@@ -26,18 +26,18 @@ const Header = () => {
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#" className="text-foreground hover:text-primary transition-colors font-medium">
+            <button className="text-foreground hover:text-primary transition-colors font-medium" onClick={() => alert('Eyeglasses category clicked!')}>
               Eyeglasses
-            </a>
-            <a href="#" className="text-foreground hover:text-primary transition-colors font-medium">
+            </button>
+            <button className="text-foreground hover:text-primary transition-colors font-medium" onClick={() => alert('Sunglasses category clicked!')}>
               Sunglasses
-            </a>
-            <a href="#" className="text-foreground hover:text-primary transition-colors font-medium">
+            </button>
+            <button className="text-foreground hover:text-primary transition-colors font-medium" onClick={() => alert('Contact Lenses clicked!')}>
               Contact Lenses
-            </a>
-            <a href="#" className="text-foreground hover:text-primary transition-colors font-medium">
+            </button>
+            <button className="text-foreground hover:text-primary transition-colors font-medium" onClick={() => alert('Eye Test booking clicked!')}>
               Eye Test
-            </a>
+            </button>
           </nav>
 
           {/* Search bar */}
@@ -52,19 +52,19 @@ const Header = () => {
 
           {/* Action buttons */}
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" className="relative">
+            <Button variant="ghost" size="icon" className="relative" onClick={() => alert('Wishlist opened!')}>
               <Heart className="w-5 h-5" />
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" onClick={() => alert('User profile/login clicked!')}>
               <User className="w-5 h-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="relative">
+            <Button variant="ghost" size="icon" className="relative" onClick={() => alert('Shopping cart opened!')}>
               <ShoppingCart className="w-5 h-5" />
               <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full text-xs w-5 h-5 flex items-center justify-center">
                 2
               </span>
             </Button>
-            <Button variant="ghost" size="icon" className="md:hidden">
+            <Button variant="ghost" size="icon" className="md:hidden" onClick={() => alert('Mobile menu opened!')}>
               <Menu className="w-5 h-5" />
             </Button>
           </div>

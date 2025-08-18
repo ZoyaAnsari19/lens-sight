@@ -29,11 +29,11 @@ const HeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" className="group">
+              <Button variant="hero" size="lg" className="group" onClick={() => alert('Redirecting to eyeglasses collection!')}>
                 Shop Eyeglasses
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="outline" size="lg">
+              <Button variant="outline" size="lg" onClick={() => alert('Booking eye test appointment!')}>
                 Take Eye Test
               </Button>
             </div>

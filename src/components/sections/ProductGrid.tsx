@@ -90,13 +90,22 @@ const ProductGrid = () => {
         {/* Filter tabs */}
         <div className="flex justify-center mb-8">
           <div className="flex bg-gray-100 rounded-lg p-1">
-            <button className="px-6 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium transition-all">
+            <button 
+              className="px-6 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium transition-all"
+              onClick={() => alert('Showing all products!')}
+            >
               All
             </button>
-            <button className="px-6 py-2 rounded-md text-gray-600 hover:text-primary text-sm font-medium transition-all">
+            <button 
+              className="px-6 py-2 rounded-md text-gray-600 hover:text-primary text-sm font-medium transition-all"
+              onClick={() => alert('Filtering eyeglasses!')}
+            >
               Eyeglasses
             </button>
-            <button className="px-6 py-2 rounded-md text-gray-600 hover:text-primary text-sm font-medium transition-all">
+            <button 
+              className="px-6 py-2 rounded-md text-gray-600 hover:text-primary text-sm font-medium transition-all"
+              onClick={() => alert('Filtering sunglasses!')}
+            >
               Sunglasses
             </button>
           </div>
@@ -126,10 +135,20 @@ const ProductGrid = () => {
 
                 {/* Action buttons */}
                 <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Button variant="outline" size="icon" className="bg-background/80 backdrop-blur-sm">
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="bg-background/80 backdrop-blur-sm"
+                    onClick={() => alert(`Added ${product.name} to wishlist!`)}
+                  >
                     <Heart className="w-4 h-4" />
                   </Button>
-                  <Button variant="outline" size="icon" className="bg-background/80 backdrop-blur-sm">
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="bg-background/80 backdrop-blur-sm"
+                    onClick={() => alert(`Quick view for ${product.name}!`)}
+                  >
                     <Eye className="w-4 h-4" />
                   </Button>
                 </div>
@@ -159,7 +178,12 @@ const ProductGrid = () => {
                     )}
                   </div>
                   
-                  <Button variant="cta" size="sm" className="group/btn">
+                  <Button 
+                    variant="cta" 
+                    size="sm" 
+                    className="group/btn"
+                    onClick={() => alert(`Added ${product.name} to cart!`)}
+                  >
                     <ShoppingCart className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
                   </Button>
                 </div>
@@ -170,7 +194,7 @@ const ProductGrid = () => {
 
         {/* View all button */}
         <div className="text-center mt-12">
-          <Button variant="outline" size="lg">
+          <Button variant="outline" size="lg" onClick={() => alert('Redirecting to full product catalog!')}>
             View All Products
           </Button>
         </div>
