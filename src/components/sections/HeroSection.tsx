@@ -8,7 +8,7 @@ const heroSlides = [
     brand: 'JOHN JACOBS',
     title: 'COASTLINE',
     subtitle: 'The New Look',
-    image: 'https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1200&h=600&fit=crop&crop=face',
+    image: 'https://images.unsplash.com/photo-1574258495973-f010dfbb5371?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
     bgColor: 'from-orange-200 to-orange-300'
   },
   {
@@ -16,7 +16,7 @@ const heroSlides = [
     brand: 'VINCENT CHASE',
     title: 'PREMIUM',
     subtitle: 'Titanium Collection',
-    image: 'https://images.unsplash.com/photo-1508296695146-257a814070b4?w=1200&h=600&fit=crop&crop=face',
+    image: 'https://images.unsplash.com/photo-1508296695146-257a814070b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
     bgColor: 'from-blue-200 to-blue-300'
   },
   {
@@ -24,10 +24,11 @@ const heroSlides = [
     brand: 'LENSKART AIR',
     title: 'FEATHERLIGHT',
     subtitle: 'Ultra Comfortable',
-    image: 'https://images.unsplash.com/photo-1556306510-9282f4974ed3?w=1200&h=600&fit=crop&crop=face',
+    image: 'https://images.unsplash.com/photo-1556306510-9282f4974ed3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
     bgColor: 'from-green-200 to-green-300'
   }
 ];
+
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

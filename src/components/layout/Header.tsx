@@ -1,8 +1,13 @@
-import React from 'react';
-import { ShoppingCart, User, Search, Heart } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React from "react";
+import { ShoppingCart, User, Search, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { useCart } from "@/context/CartContext";
 
-const Header = () => {
+export default function Header() {
+  const cls = ({ isActive }: { isActive: boolean }) =>
+    `text-sm font-medium ${isActive ? "text-teal-600" : "text-gray-700 hover:text-teal-600"}`;
+
   return (
     <header className="bg-background sticky top-0 z-50">
       {/* Top notification bar */}
@@ -16,12 +21,12 @@ const Header = () => {
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <div className="flex items-center">
-              <div className="flex items-center gap-2">
+              <Link to="/" className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                   <div className="w-5 h-5 border-2 border-primary-foreground rounded-full"></div>
                 </div>
-                <h1 className="text-2xl font-bold text-primary">lenskart</h1>
-              </div>
+                <h1 className="text-2xl font-bold text-primary">lens-sight</h1>
+              </Link>
             </div>
 
             {/* Search bar */}
@@ -37,17 +42,25 @@ const Header = () => {
             {/* Right side actions */}
             <div className="flex items-center gap-6">
               <div className="hidden md:flex items-center gap-6 text-sm">
-                <button className="text-gray-600 hover:text-primary">Track Order</button>
-                <button className="text-gray-600 hover:text-primary">Sign In & Sign Up</button>
+                <Link to="/track-order" className="text-gray-600 hover:text-primary">
+                  Track Order
+                </Link>
+                <Link to="/profile" className="text-gray-600 hover:text-primary">
+                  Sign In & Sign Up
+                </Link>
               </div>
-              
+
               <div className="flex items-center gap-3">
-                <Button variant="ghost" size="icon" onClick={() => alert('Wishlist opened!')}>
-                  <Heart className="w-5 h-5" />
-                </Button>
-                <Button variant="ghost" size="icon" onClick={() => alert('Shopping cart opened!')}>
-                  <ShoppingCart className="w-5 h-5" />
-                </Button>
+                <Link to="/wishlist">
+                  <Button variant="ghost" size="icon">
+                    <Heart className="w-5 h-5" />
+                  </Button>
+                </Link>
+                <Link to="/cart">
+                  <Button variant="ghost" size="icon">
+                    <ShoppingCart className="w-5 h-5" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -59,51 +72,46 @@ const Header = () => {
         <div className="container mx-auto px-4">
           <nav className="flex items-center justify-between py-3">
             <div className="flex items-center gap-8">
-              <button className="text-sm font-medium text-gray-700 hover:text-primary" onClick={() => alert('New Arrivals clicked!')}>
+              <Link to="/new-arrivals" className="text-sm font-medium text-gray-700 hover:text-primary">
                 NEW ARRIVALS
-              </button>
-              <button className="text-sm font-medium text-gray-700 hover:text-primary" onClick={() => alert('Eyeglasses clicked!')}>
+              </Link>
+              <Link to="/eyeglasses" className="text-sm font-medium text-gray-700 hover:text-primary">
                 EYEGLASSES
-              </button>
-              <button className="text-sm font-medium text-gray-700 hover:text-primary" onClick={() => alert('Computer Eyeglasses clicked!')}>
-                COMPUTER EYEGLASSES
-              </button>
-              <button className="text-sm font-medium text-gray-700 hover:text-primary" onClick={() => alert('Sunglasses clicked!')}>
+              </Link>
+              <Link to="/screen-glasses" className="text-sm font-medium text-gray-700 hover:text-primary">
+                SCREEN EYEGLASSES
+              </Link>
+              <Link to="/sunglasses" className="text-sm font-medium text-gray-700 hover:text-primary">
                 SUNGLASSES
-              </button>
-              <button className="text-sm font-medium text-gray-700 hover:text-primary" onClick={() => alert('Prescription Sunglasses clicked!')}>
-                PRESCRIPTION SUNGLASSES
-              </button>
-              <button className="text-sm font-medium text-gray-700 hover:text-primary" onClick={() => alert('Kids Eyeglasses clicked!')}>
+              </Link>
+              <Link to="/contact-lenses" className="text-sm font-medium text-gray-700 hover:text-primary">
+                CONTACT LENSES
+              </Link>
+              <Link to="/kids-eyeglasses" className="text-sm font-medium text-gray-700 hover:text-primary">
                 KIDS EYEGLASSES
-              </button>
+              </Link>
             </div>
-            
+      
             <div className="flex items-center gap-3">
-              <Button 
-                className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded text-sm"
-                onClick={() => alert('3D Try On activated!')}
-              >
-                3D TRY ON
-              </Button>
-              <Button 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm"
-                onClick={() => alert('BLU activated!')}
-              >
-                BLU
-              </Button>
-              <Button 
-                className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded text-sm"
-                onClick={() => alert('GOLD activated!')}
-              >
-                GOLD
-              </Button>
+              <Link to="/TryOn">
+                <Button className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded text-sm">
+                  3D TRY ON
+                </Button>
+              </Link>
+              <Link to="/Blu">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm">
+                  BLU
+                </Button>
+              </Link>
+              <Link to="/Gold">
+                <Button className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded text-sm">
+                  GOLD
+                </Button>
+              </Link>
             </div>
           </nav>
         </div>
       </div>
     </header>
   );
-};
-
-export default Header;
+}

@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+
+/* App.css */
+.react-hot-toast,
+[data-sonner-toaster] {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  margin: 0 auto !important;
+}
