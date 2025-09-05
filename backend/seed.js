@@ -1,182 +1,239 @@
 import mongoose from "mongoose";
-import Product from "./models/Product.js"; 
+import Product from "./models/Product.js";
 
-const MONGO_URI = "mongodb+srv://Zoya:zoya123@cluster0.sktolrf.mongodb.net/lenskart?retryWrites=true&w=majority&appName=Cluster0";
+const MONGO_URI =
+  "mongodb+srv://Zoya:zoya123@cluster0.sktolrf.mongodb.net/lenskart?retryWrites=true&w=majority&appName=Cluster0";
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
+mongoose
+  .connect(MONGO_URI)
+  .then(() => console.log("MongoDB Connected ✅"))
+  .catch((err) => console.log(err));
 
 const seedProducts = async () => {
   try {
-    // ✅ Delete all existing products
     await Product.deleteMany({});
     console.log("All old products deleted ✅");
 
     const products = [
-      
-      // ✅ New Arrivals (can be from any category)
+      // Eyeglasses
       {
-        brand: "Lenskart Air Special",
-        category: "Eyeglasses",
-        price: 1799,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2478_09-july.jpg",
-        isNewArrival: true,
-        discount: 5,
-      },
-      {
-        brand: "Vincent Chase Trendy",
-        category: "Sunglasses",
-        price: 3499,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-s15407-c1-sunglasses_g_2710_07_02_2023.jpg",
-        isNewArrival: true,
-        discount: 0,
-      },
-      {
-        brand: "BlueLight Plus",
-        category: "ScreenGlasses",
-        price: 1499,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/black-full-rim-square-lenskart-studio-ls-e15666-c2-eyeglasses_csvfile-1705966162422-akaran33.png",
-        isNewArrival: true,
-        discount: 10,
-      },
-      // ✅ Eyeglasses
-      {
+        id: "1",
+        name: "Lenskart Air Special Eyeglasses",
         brand: "Lenskart Air",
-        category: "Eyeglasses",
-        price: 1599,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2477_09-july.jpg",
-        isNewArrival: true,
-        discount: 10,
-      },
-      {
-        brand: "John Jacobs",
-        category: "Eyeglasses",
-        price: 2999,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e15349-c3-eyeglasses_csvfile-1682509990345-g_1842.jpg",
-        isNewArrival: false,
+        category: "eyeglasses",
+        price: 1799,
         discount: 5,
-      },
-      {
-        brand: "Ray-Ban Classic",
-        category: "Eyeglasses",
-        price: 1999,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/black-gold-black-full-rim-round-john-jacobs-tr-flex-jj-e14410-c6-eyeglasses__dsc7005_20_06_2024.jpg",
+        frameColor: "Grey",
+        description:
+          "Premium full-rim rectangular eyeglasses with lightweight frame.",
+        stock: 50,
         isNewArrival: true,
-        discount: 0,
+        isActive: true,
+        images: [
+          {
+            url: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2478_09-july.jpg",
+            alt: "Lenskart Air Special Eyeglasses",
+            isPrimary: true,
+          },
+        ],
       },
 
-      // ✅ ScreenGlasses
+      // Sunglasses
       {
-        brand: "Lenskart BlueLight",
-        category: "ScreenGlasses",
+        id: "2",
+        name: "Vincent Chase Trendy Sunglasses",
+        brand: "Vincent Chase",
+        category: "sunglasses",
+        price: 3499,
+        discount: 0,
+        frameColor: "Black",
+        description: "Stylish polarized sunglasses for all-day outdoor wear.",
+        stock: 30,
+        isNewArrival: true,
+        isActive: true,
+        images: [
+          {
+            url: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-s15407-c1-sunglasses_g_2710_07_02_2023.jpg",
+            alt: "Vincent Chase Sunglasses",
+            isPrimary: true,
+          },
+        ],
+      },
+      {
+        id: "3",
+        name: "Ray-Ban Classic Aviator Sunglasses",
+        brand: "Ray-Ban",
+        category: "sunglasses",
+        price: 5999,
+        discount: 10,
+        frameColor: "Gold",
+        description: "Iconic aviator sunglasses with UV protection lenses.",
+        stock: 20,
+        isNewArrival: false,
+        isActive: true,
+        images: [
+          {
+            url: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2478_09-july.jpg",
+            alt: "Ray-Ban Classic Aviator",
+            isPrimary: true,
+          },
+        ],
+      },
+      {
+        id: "4",
+        name: "Oakley Sports Sunglasses",
+        brand: "Oakley",
+        category: "sunglasses",
+        price: 4999,
+        discount: 5,
+        frameColor: "Blue",
+        description: "Durable sports sunglasses with polarized lenses.",
+        stock: 25,
+        isNewArrival: true,
+        isActive: true,
+        images: [
+          {
+            url: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2478_09-july.jpg",
+            alt: "Oakley Sports Sunglasses",
+            isPrimary: true,
+          },
+        ],
+      },
+
+      // Kids Eyeglasses
+      {
+        id: "1001",
+        name: "Kids Playful Round Eyeglasses",
+        brand: "KidSafe",
+        category: "kids-eyeglasses",
         price: 1299,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/blue-block-screen-glasses:-matte-black-full-rim-square-lenskart-blu-lb-e13526-c1_vincent-chase-vc-e13526-c1-eyeglasses_g_8388_28july23.jpg",
-        isNewArrival: true,
         discount: 10,
-      },
-      {
-        brand: "Vincent Chase BlueLight",
-        category: "ScreenGlasses",
-        price: 1599,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/peyush-bansal-shark-tank-navy-full-rim-square-lenskart-hustlr-lb-e14058-h-c34-eyeglasses_g_1237_09_11_2023.jpg",
+        frameColor: "Blue",
+        description: "Fun and durable round eyeglasses for active kids.",
+        stock: 40,
         isNewArrival: false,
-        discount: 5,
+        isActive: true,
+        images: [
+          {
+            url: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2478_09-july.jpg",
+            alt: "Kids Sporty Rectangle Eyeglasses",
+            alt: "Kids Round Eyeglasses",
+            isPrimary: true,
+          },
+        ],
       },
       {
-        brand: "John Jacobs Screen",
-        category: "ScreenGlasses",
+        id: "1002",
+        name: "Kids Sporty Rectangle Eyeglasses",
+        brand: "KidSafe",
+        category: "kids-eyeglasses",
+        price: 1499,
+        discount: 0,
+        frameColor: "Red",
+        description: "Comfortable rectangular frame ideal for sporty kids.",
+        stock: 25,
+        isNewArrival: true,
+        isActive: true,
+        images: [
+          {
+            url: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2478_09-july.jpg",
+            alt: "Kids Sporty Rectangle Eyeglasses",
+            isPrimary: true,
+          },
+        ],
+      },
+
+      // Screen Glasses
+      {
+        id: "3001",
+        name: "BluGuard Anti-Glare Computer Glasses",
+        brand: "BluGuard",
+        category: "screen-glasses",
         price: 1999,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/blue-block-phone-computer-glasses:-dusty-rose-full-rim-square-lenskart-hustlr-lb-e14058-xw-c4_dsc_0485_10apr24.jpg",
+        discount: 10,
+        frameColor: "Black",
+        description:
+          "Protects eyes from blue light and reduces digital eye strain.",
+        stock: 40,
         isNewArrival: true,
-        discount: 0,
+        isActive: true,
+        images: [
+          {
+            url: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2478_09-july.jpg",
+            alt: "BluGuard Anti-Glare Glasses",
+            isPrimary: true,
+          },
+        ],
+      },
+      {
+        id: "3002",
+        name: "Lenskart Blu Zero Power Glasses",
+        brand: "Lenskart Blu",
+        category: "screen-glasses",
+        price: 1499,
+        discount: 5,
+        frameColor: "Transparent",
+        description: "Zero power glasses with advanced blue light protection.",
+        stock: 50,
+        isNewArrival: false,
+        isActive: true,
+        images: [
+          {
+            url: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2478_09-july.jpg",
+            alt: "Lenskart Blu Glasses",
+            isPrimary: true,
+          },
+        ],
       },
 
-      // Sunglasses 
+      // Contact Lenses
       {
-        brand: "Vincent Chase Trendy",
-        category: "Sunglasses",
-        price: 3499,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/gold-blue-gradient-full-rim-aviator-vincent-chase-polarized-vintage-vc-s11075-c12-sunglasses_g_3383_6_02_22.jpg",
+        id: "2001",
+        name: "Bausch & Lomb Daily Contact Lenses",
+        brand: "Bausch & Lomb",
+        category: "contact-lenses",
+        price: 999,
+        discount: 5,
+        frameColor: "Transparent",
+        description: "Daily wear contact lenses for clear and comfortable vision.",
+        stock: 100,
         isNewArrival: true,
-        discount: 0,
+        isActive: true,
+        images: [
+          {
+            url: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2478_09-july.jpg",
+            alt: "Bausch & Lomb Daily Lenses",
+            isPrimary: true,
+          },
+        ],
       },
       {
-        brand: "Vincent Chase Trendy",
-        category: "Sunglasses",
-        price: 6499,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/silver-grey-full-rim-round-vincent-chase-polarized-met-effect-vc-s15398-c2-sunglasses_g_0998_02_02_23.jpg",
-        isNewArrival: true,
-        discount: 0,
+        id: "2002",
+        name: "Acuvue Moist Contact Lenses",
+        brand: "Acuvue",
+        category: "contact-lenses",
+        price: 1199,
+        discount: 10,
+        frameColor: "Transparent",
+        description: "Hydrating contact lenses for all-day comfort.",
+        stock: 120,
+        isNewArrival: false,
+        isActive: true,
+        images: [
+          {
+            url: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//l/i/grey-transparent-gray-full-rim-rectangle-lenskart-air-signia-la-e14573-c3-eyeglasses_g_2478_09-july.jpg",
+            alt: "Acuvue Moist Contact Lenses",
+            isPrimary: true,
+          },
+        ],
       },
-      {
-        brand: "Vincent Chase Trendy",
-        category: "Sunglasses",
-        price: 3499,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/black-grey-full-rim-wayfarer-vincent-chase-polarized-athleisure-vc-s14459-c7-sunglasses_g_2628_9_29_22.jpg",
-        isNewArrival: true,
-        discount: 0,
-      },
-      {
-        brand: "Vincent Chase Trendy",
-        category: "Sunglasses",
-        price: 4000,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//j/i/grey-gunmetal-full-rim-hexagonal-john-jacobs-jj-tints-jj-s12472--c2-sunglasses_john-jacobs-jj-s12472-c2-sunglasses_sunglasses_g_1972_1_1_05_july23.jpg",
-        isNewArrival: true,
-        discount: 0,
-      },
-      {
-        brand: "Vincent Chase Trendy",
-        category: "Sunglasses",
-        price: 3000,
-        image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//v/i/black-full-rim-aviator-vincent-chase-the-metal-edit-vc-s13110-c6-polarized-sunglasses_vincent-chase-vc-s13110-c6-c6-sunglasses_sunglasses_g_8950_5july23.jpg",
-        isNewArrival: true,
-        discount: 0,
-      },
-
-      // Kids Glasses 
-      {
-    brand: "Lenskart Kids",
-    category: "KidGlasses",
-    price: 1599,
-    image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//h/i/kids-glasses:-black-blue-transparent-black-full-rim-rectangle-kids--8-12-yrs--hooper-astra-hooper-hp-e10014l-c4_hooper-hp-e10014l-c4-eyeglasses_g_0981_22_march23.jpg.jpg",
-    isNewArrival: true,
-    discount: 5,
-  },
-  {
-    brand: "John Jacobs Kids",
-    category: "KidGlasses",
-    price: 999,
-    image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//h/i/kids-glasses:-matte-black-full-rim-rectangle-kids--8-12-yrs--hooper-flexi-hooper-hp-e10004l-c2_hooper-hp-e10004l-c2-eyeglasses_g_4296_22_march23.jpg.jpg",
-    isNewArrival: false,
-    discount: 0,
-  },
-  {
-    brand: "Vincent Chase Kids",
-    category: "KidGlasses",
-    price: 2199,
-    image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//l/i/peyush-bansal-shark-tank-navy-full-rim-lenskart-hustlr-eyeglasses_csvfile-1708330079773-216583_1.jpg",
-    isNewArrival: true,
-    discount: 10,
-  },
-  {
-    brand: "Vincent Chase Kids",
-    category: "KidGlasses",
-    price: 1299,
-    image: "https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/628x301/9df78eab33525d08d6e5fb8d27136e95//h/i/kids-glasses:-blue-blue-yellow-full-rim-wayfarer-kids-8-12-yrs-hooper-flexi-hooper-hp-e10082l-c4_g_5463_07_20_23.jpg",
-    isNewArrival: true,
-    discount: 10,
-  },
-
-  // Contact Lenses
-  
-];
+    ];
 
     await Product.insertMany(products);
-    console.log("New Products Seeded Successfully!");
+    console.log("✅ New Products Seeded Successfully");
     mongoose.connection.close();
   } catch (error) {
-    console.log("Seeding Error:", error);
+    console.log("❌ Seeding Error:", error);
     mongoose.connection.close();
   }
 };
