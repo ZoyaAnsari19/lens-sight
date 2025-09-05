@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
@@ -7,7 +8,15 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const { ApolloServerPluginLandingPageGraphQLPlayground } = require('apollo-server-core');
 
-// Import all resolvers
+// Global error handler
+process.on("unhandledRejection", (err) => {
+  console.error("❌ Unhandled Rejection:", err);
+});
+process.on("uncaughtException", (err) => {
+  console.error("❌ Uncaught Exception:", err);
+});
+
+// Import resolvers
 const membershipResolvers = require('./graphql/resolvers/membershipResolvers');
 const productResolvers = require('./graphql/resolvers/productResolvers');
 const orderResolvers = require('./graphql/resolvers/orderResolvers');
@@ -33,23 +42,23 @@ const startServer = async () => {
   });
   app.use(limiter);
 
-  // Merge all resolvers
+  // Merge resolvers safely
   const resolvers = {
     Query: {
-      ...membershipResolvers.Query,
-      ...productResolvers.Query,
-      ...orderResolvers.Query,
-      ...userResolvers.Query,
-      ...wishlistResolvers.Query,
-      ...cartResolvers.Query,
+      ...(membershipResolvers.Query || {}),
+      ...(productResolvers.Query || {}),
+      ...(orderResolvers.Query || {}),
+      ...(userResolvers.Query || {}),
+      ...(wishlistResolvers.Query || {}),
+      ...(cartResolvers.Query || {}),
     },
     Mutation: {
-      ...membershipResolvers.Mutation,
-      ...productResolvers.Mutation,
-      ...orderResolvers.Mutation,
-      ...userResolvers.Mutation,
-      ...wishlistResolvers.Mutation,
-      ...cartResolvers.Mutation,
+      ...(membershipResolvers.Mutation || {}),
+      ...(productResolvers.Mutation || {}),
+      ...(orderResolvers.Mutation || {}),
+      ...(userResolvers.Mutation || {}),
+      ...(wishlistResolvers.Mutation || {}),
+      ...(cartResolvers.Mutation || {}),
     },
   };
 
@@ -60,22 +69,15 @@ const startServer = async () => {
     csrfPrevention: true,
     cache: 'bounded',
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
-    context: ({ req }) => { { user: req.user || null };
-    },
+    context: ({ req }) => ({ user: req.user || null }),
   });
 
   await server.start();
-
-  // Attach GraphQL endpoint
   server.applyMiddleware({ app, path: '/graphql', cors: true });
 
-  // MongoDB connection
+  // MongoDB connect
   mongoose
-    .connect(
-      process.env.MONGO_URI ||
-        'mongodb+srv://Zoya:zoya123@cluster0.sktolrf.mongodb.net/lenskart?retryWrites=true&w=majority&appName=Cluster0',
-      { useNewUrlParser: true, useUnifiedTopology: true }
-    )
+    .connect(process.env.MONGO_URI || 'mongodb+srv://Zoya:zoya123@cluster0.sktolrf.mongodb.net/lenskart?retryWrites=true&w=majority&appName=Cluster0')
     .then(() => console.log('✅ MongoDB connected'))
     .catch((err) => console.error('❌ MongoDB connection error:', err));
 
