@@ -9,7 +9,7 @@ import { useWishlist } from "../context/WishlistContext";
 
 export default function Eyeglasses() {
   const { data, loading, error, refetch } = useQuery(GET_PRODUCTS, {
-    variables: { page: 1, limit: 12, filter: { category: "Eyeglasses" } },
+    variables: { page: 1, limit: 12, filter: { category: "eyeglasses" } },
     fetchPolicy: "network-only",
   });
 
