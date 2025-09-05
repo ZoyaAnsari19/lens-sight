@@ -156,6 +156,7 @@ const typeDefs = gql`
     products(page: Int, limit: Int, filter: ProductFilter): PaginatedProducts!
     product(id: ID!): Product
     featuredProducts: [Product!]!
+    newArrivalsProducts: [Product!]!    # Added line for your resolver
     myCart: Cart
     myOrders: [Order!]!
     myWishlist: [Product!]!
@@ -170,7 +171,7 @@ const typeDefs = gql`
     order(id: ID!): Order   
     allOrders: [Order!]!
     orderStats: OrderStats!
-    
+
     searchSuggestions(keyword: String!): [String!]!
   }
 
@@ -194,7 +195,7 @@ const typeDefs = gql`
     updateProfile(input: UserInput!): User
 
     addAddress(input: AddressInput!): Address
-    updateAddress(id: ID!, input: AddressInput!): Address  
+    updateAddress(id: ID!, input: AddressInput!): Address
     deleteAddress(id: ID!): Boolean
 
     addToWishlist(productId: ID!): Wishlist
